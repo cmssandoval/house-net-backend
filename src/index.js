@@ -13,9 +13,15 @@ const __dirname = path.dirname(__filename);
 // app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/', ( req, res ) => {
-    const indexHTML = path.join(__dirname, 'dist', 'index.html');
+    const indexHTML = path.join(__dirname, '..', 'dist', 'index.html');
 
-    return res.status(200).sendFile(indexHTML);
+    return res.status(200).sendFile(indexHTML, (err) => {
+        console.error(`Error al enviar index.html: ${err.message}`);
+        
+        if ( !res.headersSent ) {
+            return res.status(404).json('Error 404: Not Found')
+        }
+    });
 });
 
 app.listen(PORT, HOST, () => {
