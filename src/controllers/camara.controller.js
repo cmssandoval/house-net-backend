@@ -1,4 +1,4 @@
-import camaraModel from '../models/camara.model.js';
+// import camaraModel from '../models/camara.model.js';
 
 const streamHttp = async ( req, res ) => {
     
@@ -26,4 +26,4 @@ const camaraController = {
     streamHttp,
 };
 
-export default camaraController;
+// export default camaraController;

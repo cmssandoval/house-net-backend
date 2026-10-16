@@ -1,5 +1,5 @@
-import { spawn } from 'node:child_process';
-import { PassThrough } from 'node:stream';
+// import { spawn } from 'node:child_process';
+// import { PassThrough } from 'node:stream';
 
 class CamaraModel {
     constructor(){
@@ -82,4 +82,4 @@ class CamaraModel {
     }
 };
 
-export default new CamaraModel();
+// export default new CamaraModel();
