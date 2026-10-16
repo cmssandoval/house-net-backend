@@ -34,10 +34,10 @@ class CamaraModel {
 
         this.ffmpegProcess = spawn('ffmpeg', [
             '-f', 'v4l2',               // Formato de entrada
-            '-input_format', 'h264',
             '-video_size', '1280x720',  // Resolución de captura
             '-framerate', '30',         // Fotogramas por segundo (ajusta según tu cámara)
             '-i', this.VIDEO_DEVICE,    // Dispositivo V4L2 origen
+            
             '-f', 'mpjpeg',             // Formato de salida (Motion JPEG para multipart)
             '-q:v', '5',                // Calidad de video (1-31, donde menor es mejor calidad)
             '-an',
