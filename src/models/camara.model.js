@@ -34,17 +34,27 @@ class CamaraModel {
 
         this.ffmpegProcess = spawn('ffmpeg', [
             '-f', 'v4l2',               // Formato de entrada
-            '-pixel_format', 'yuyv422',
+            '-input_format', 'h264',
             '-video_size', '1280x720',  // Resolución de captura
             '-framerate', '30',         // Fotogramas por segundo (ajusta según tu cámara)
             '-i', this.VIDEO_DEVICE,    // Dispositivo V4L2 origen
             '-f', 'mpjpeg',             // Formato de salida (Motion JPEG para multipart)
             '-q:v', '5',                // Calidad de video (1-31, donde menor es mejor calidad)
+            '-an',
             'pipe:1'                    // Enviar salida a stdout
         ]);
-        
+
         this.ffmpegProcess.stderr.on('data', (data) => {
-            console.log(`[FFmpeg Debug]: ${data.toString()}`);
+            const log = data.toString();
+            if (log.includes('Error') || log.includes('fail') || log.includes('Invalid')) {
+                console.error(`[FFmpeg ERROR]: ${log}`);
+            } else {
+                console.log(`[FFmpeg Info]: ${log.trim()}`);
+            }
+        });
+
+        this.ffmpegProcess.on('exit', (code, signal) => {
+            console.log(`[FFmpeg Process] Salió inesperadamente con código ${code} y señal ${signal}`);
         });
 
         this.ffmpegProcess.stdout.pipe(this.sharedStream, { end: false });
