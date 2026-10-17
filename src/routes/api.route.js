@@ -1,5 +1,5 @@
 import express from 'express';
-import inventarioRouter from './inventario.route.js';
+import inventoryRouter from './inventory.route.js';
 // import camaraRouter from './camara.route.js';
 
 const apiRouter = express.Router();
@@ -14,10 +14,10 @@ apiRouter.get('/', (req, res) => {
     });
 });
 
-apiRouter.use('/inventario', inventarioRouter);
+apiRouter.use('/inventario', inventoryRouter);
 // apiRouter.use('/tareas', inventarioRouter);
 // apiRouter.use('/calendario', inventarioRouter);
 
-// apiRouter.use('/camara', camaraRouter); //* No utilizar rutas de cámara hasta implementar web socket
+// apiRouter.use('/camara', camaraRouter); //! DO NOT USE CAMERA ROUTES, NOT IMPLEMENTED
 
 export default apiRouter;
