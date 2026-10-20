@@ -1,4 +1,4 @@
-// import camaraModel from '../models/camara.model.js';
+// import cameraModel from '../models/camera.model.js';
 
 const streamHttp = async ( req, res ) => {
     
@@ -13,17 +13,17 @@ const streamHttp = async ( req, res ) => {
     });
     res.flushHeaders(); 
 
-    const stream = camaraModel.getStream();
+    const stream = cameraModel.getStream();
     stream.pipe(res);
 
     req.on('close', () => {
         stream.unpipe(res);
-        camaraModel.releaseStream();
+        cameraModel.releaseStream();
     });
 };
 
-const camaraController = {
+const cameraController = {
     streamHttp,
 };
 
-// export default camaraController;
+// export default cameraController;

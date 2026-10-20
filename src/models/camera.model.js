@@ -11,7 +11,7 @@ class CamaraModel {
 
     getStream() {
         this.clientCount++;
-        console.log(`Cliente conectado al stream HTTP. Total: ${this.clientCount}`);
+        console.log(`Client connected to HTTP stream. Total: ${this.clientCount}`);
 
         if (!this.ffmpegProcess) {
             this.startFFmpeg();
@@ -22,7 +22,7 @@ class CamaraModel {
 
     releaseStream() {
         this.clientCount--;
-        console.log(`Cliente desconectado al stream HTTP. Total: ${this.clientCount}`);
+        console.log(`Client disconnected from HTTP stream. Total: ${this.clientCount}`);
 
         if (this.clientCount <= 0 && this.ffmpegProcess) {
             this.stopFFmpeg();
@@ -30,18 +30,18 @@ class CamaraModel {
     }
 
     startFFmpeg() {
-        console.log('Iniciando instancia única de FFmpeg...');
+        console.log('Starting a single instance of FFmpeg...');
 
         this.ffmpegProcess = spawn('ffmpeg', [
-            '-f', 'v4l2',               // Formato de entrada
-            '-video_size', '1280x720',  // Resolución de captura
-            '-framerate', '30',         // Fotogramas por segundo (ajusta según tu cámara)
-            '-i', this.VIDEO_DEVICE,    // Dispositivo V4L2 origen
+            '-f', 'v4l2',               // Input format
+            '-video_size', '1280x720',  // Capture resolution
+            '-framerate', '30',         // Frames per second
+            '-i', this.VIDEO_DEVICE,    // V4L2 origin device
             
-            '-f', 'mpjpeg',             // Formato de salida (Motion JPEG para multipart)
-            '-q:v', '5',                // Calidad de video (1-31, donde menor es mejor calidad)
+            '-f', 'mpjpeg',             // Output format
+            '-q:v', '5',                // Video quality (1:best - 31:worse, CQP)
             '-an',
-            'pipe:1'                    // Enviar salida a stdout
+            'pipe:1'                    // Send out to stdout
         ]);
 
         this.ffmpegProcess.stderr.on('data', (data) => {
@@ -54,24 +54,24 @@ class CamaraModel {
         });
 
         this.ffmpegProcess.on('exit', (code, signal) => {
-            console.log(`[FFmpeg Process] Salió inesperadamente con código ${code} y señal ${signal}`);
+            console.log(`[FFmpeg Process] Exit unexpectedly with code ${code} and signal ${signal}`);
         });
 
         this.ffmpegProcess.stdout.pipe(this.sharedStream, { end: false });
         
         this.ffmpegProcess.on('error', (err) => {
-            console.error('Error en proceso FFmpeg:', err);
+            console.error('Error in FFmpeg process:', err);
             this.stopFFmpeg();
         });
         
         this.ffmpegProcess.on('close', () => {
-            console.log('Proceso FFmpeg terminado con normalidad.');
+            console.log('FFmpeg process ended with normality.');
         });
     }
 
     stopFFmpeg() {
         if (this.ffmpegProcess) {
-            console.log('No quedan clientes activos. Apagando FFmpeg...');
+            console.log('No activve clients. Turning off FFmpeg...');
             this.ffmpegProcess.kill('SIGINT');
             this.ffmpegProcess = null;
             

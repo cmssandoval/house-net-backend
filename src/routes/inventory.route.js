@@ -3,10 +3,10 @@ import inventoryController from '../controllers/inventory.controller.js';
 
 const inventoryRouter = express.Router();
 
-inventoryRouter.get('/', inventoryController.readInventory);                // Obtener
-// inventarioRouter.post('/', inventarioController.writeInventario);        // Crear
-// inventarioRouter.put('/:id', inventarioController.replaceInventario);    // Reemplazar
-// inventarioRouter.patch('/:id', inventarioController.modifyInventario);   // Modificar
-// inventarioRouter.delete('/:id', inventarioController.deleteInventario);  // Eliminar
+inventoryRouter.get('/', inventoryController.readInventory);
+inventoryRouter.post('/', inventoryController.writeInventory);
+inventoryRouter.put('/:id', inventoryController.replaceInventoryItem);
+inventoryRouter.patch('/:id', inventoryController.modifyInventoryItem);
+inventoryRouter.delete('/:id', inventoryController.deleteInventoryItem);
 
 export default inventoryRouter;

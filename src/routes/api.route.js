@@ -9,7 +9,7 @@ apiRouter.get('/', (req, res) => {
         info: {
             code: 200,
             status: 'Online',
-            message: 'Bienvenido a la API de House Net',
+            message: 'Welcome to House Net API',
         }
     });
 });

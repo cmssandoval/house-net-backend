@@ -1,9 +1,9 @@
 // import express from 'express';
-// import camaraController from '../controllers/camara.controller.js';
+// import cameraController from '../controllers/camera.controller.js';
 
-const camaraRouter = express.Router();
+const cameraRouter = express.Router();
 
-camaraRouter.get('/', ( req, res ) => {res.json({code: 200, status: 'Online'})})
-camaraRouter.get('/stream', camaraController.streamHttp);
+cameraRouter.get('/', ( req, res ) => {res.json({code: 200, status: 'Online'})})
+cameraRouter.get('/stream', cameraController.streamHttp);
 
-// export default camaraRouter;
+// export default cameraRouter;
