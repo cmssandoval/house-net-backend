@@ -1,0 +1,73 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider    = "postgresql"
+  url         = env("DATABASE_URL")
+  extensions  = [citext]
+}
+
+enum UserRole {
+  admin
+  user
+  guest
+
+  @@map("user_role")
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  inventory Inventory[]
+
+  @@map("category")
+}
+
+model Location {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  inventory Inventory[]
+
+  @@map("location")
+}
+
+model Inventory {
+  id            Int       @id @default(autoincrement())
+  productName   String    @map("product_name")
+  imageUrl      String?   @map("image_url")
+  categoryId    Int       @map("category_id")
+  locationId    Int       @map("location_id")
+  stock         Int       @default(0)
+  minStock      Int       @default(0) @map("min_stock")
+  unit          String    @default("unidad")
+  notes         String?
+  createdAt     DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  location Location @relation(fields: [locationId], references: [id], onDelete: Restrict)
+
+  @@index([categoryId], map: "inventory_category_idx")
+  @@index([locationId], map: "inventory_location_idx")
+  @@map("inventory")
+}
+
+model User {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  fullName        String    @map("full_name")
+  displayName     String    @map("display_name")
+  email           String    @unique @db.Citext
+  passwordHash    String    @map("password_hash")
+  role            UserRole  @default(user)
+  isActive        Boolean   @default(true) @map("is_active")
+  emailVerifiedAt DateTime? @map("email_verified_at") @db.Timestamptz(6)
+  lastLoginAt     DateTime? @map("last_login_at") @db.Timestamptz(6)
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  @@map("users")
+}
