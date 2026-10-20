@@ -1,5 +1,5 @@
 // import express from 'express';
-// import cameraController from '../controllers/camera.controller.js';
+// import cameraController from '../controllers/cameraController.js';
 
 const cameraRouter = express.Router();
 

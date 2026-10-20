@@ -1,4 +1,4 @@
-import InventoryModel from '../models/inventory.model.js';
+import InventoryModel from '../models/InventoryModel.js';
 
 /** @type {import('express').RequestHandler} */
 const readInventory = async ( req, res ) => {

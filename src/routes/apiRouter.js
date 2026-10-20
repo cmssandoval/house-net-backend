@@ -1,6 +1,6 @@
 import express from 'express';
-import inventoryRouter from './inventory.route.js';
-// import camaraRouter from './camara.route.js';
+import inventoryRouter from './inventoryRouter.js';
+// import cameraRouter from './cameraRouter.js';
 
 const apiRouter = express.Router();
 

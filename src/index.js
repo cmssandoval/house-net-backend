@@ -3,7 +3,7 @@ import express from 'express';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import apiRouter from './routes/api.route.js'
+import apiRouter from './routes/apiRouter.js';
 
 import errorHandler from './middlewares/errorHandler.js';
 import SPAHandler from './middlewares/spaHandler.js';

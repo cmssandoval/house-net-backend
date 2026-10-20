@@ -1,4 +1,4 @@
-// import cameraModel from '../models/camera.model.js';
+// import cameraModel from '../models/cameraModel.js';
 
 const streamHttp = async ( req, res ) => {
     
