@@ -12,12 +12,12 @@ class InventoryModel {
         });
     }
 
-    static async createItem (item) {
+    static async createItem ( item ) {
         const {
             productName,
             imageUrl = null,
-            categoryName,
-            locationName,
+            categoryId,
+            locationId,
             stock = 0,
             minStock = 0,
             unit = 'unidad',
@@ -29,10 +29,10 @@ class InventoryModel {
                 productName,
                 imageUrl,
                 category: {
-                    connect: { name: categoryName },
+                    connect: { id: categoryId },
                 },
                 location: {
-                    connect: { name: locationName },
+                    connect: { id: locationId },
                 },
                 stock,
                 minStock,
