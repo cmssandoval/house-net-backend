@@ -17,7 +17,12 @@ apiRouter.get('/', (req, res) => {
 apiRouter.use('/inventario', inventoryRouter);
 // apiRouter.use('/tareas', inventarioRouter);
 // apiRouter.use('/calendario', inventarioRouter);
-
 // apiRouter.use('/camara', camaraRouter); //! DO NOT USE CAMERA ROUTES, NOT IMPLEMENTED
+
+apiRouter.use((req, res, next) => {
+    const err = new Error(`Route not found: ${req.method} ${req.originalUrl}`);
+    err.status = 404;
+    next(err);
+});
 
 export default apiRouter;
