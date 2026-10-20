@@ -1,37 +1,41 @@
 import InventoryModel from '../models/inventory.model.js';
 
+/** @type {import('express').RequestHandler} */
 const readInventory = async ( req, res ) => {
     const inventory = await InventoryModel.getItems();
     return res.json(inventory);
 };
 
+/** @type {import('express').RequestHandler} */
 const writeInventory = async ( req, res ) => {
-    const inventory = await InventoryModel.createItem();
+    const response = await InventoryModel.createItem();
     return res.json();
 };
 
-const replaceInventory = async ( req, res ) => {
-    const inventory = await InventoryModel.replaceItem();
+/** @type {import('express').RequestHandler} */
+const replaceInventoryItem = async ( req, res ) => {
+    const response = await InventoryModel.replaceItem();
     return res.json();
 };
 
-const modifyInventory = async ( req, res ) => {
-    const inventory = await InventoryModel.modifyItem();
+/** @type {import('express').RequestHandler} */
+const modifyInventoryItem = async ( req, res ) => {
+    const response = await InventoryModel.modifyItem();
     return res.json();
 };
 
-const deleteInventory = async ( req, res ) => {
-    const inventory = await InventoryModel.deleteItem();
+/** @type {import('express').RequestHandler} */
+const deleteInventoryItem = async ( req, res ) => {
+    const response = await InventoryModel.deleteItem();
     return res.json();
 };
-
 
 const inventoryController = {
     readInventory,
     writeInventory,
-    replaceInventory,
-    modifyInventory,
-    deleteInventory,
+    replaceInventoryItem,
+    modifyInventoryItem,
+    deleteInventoryItem,
 };
 
 export default inventoryController;
