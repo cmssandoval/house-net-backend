@@ -8,8 +8,9 @@ const readInventory = async ( req, res ) => {
 
 /** @type {import('express').RequestHandler} */
 const writeInventory = async ( req, res ) => {
-    const response = await InventoryModel.createItem();
-    return res.json();
+    const item = req.body;
+    const response = await InventoryModel.createItem({ item });
+    return res.json({response});
 };
 
 /** @type {import('express').RequestHandler} */
