@@ -14,7 +14,7 @@ apiRouter.get('/', (req, res) => {
     });
 });
 
-apiRouter.use('/inventario', inventoryRouter);
+apiRouter.use('/inventory', inventoryRouter);
 // apiRouter.use('/tareas', inventarioRouter);
 // apiRouter.use('/calendario', inventarioRouter);
 // apiRouter.use('/camara', camaraRouter); //! DO NOT USE CAMERA ROUTES, NOT IMPLEMENTED
