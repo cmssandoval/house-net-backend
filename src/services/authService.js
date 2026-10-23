@@ -2,6 +2,8 @@ import UserModel from '../models/UserModel.js';
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
 
+const DUMMY_HASH = await argon2.hash('dummy-password');
+
 const signToken = ( user ) => {
   const { id, role } = user;
   jwt.sign({ sub: id, role }, process.env.JWT_SECRET, {
