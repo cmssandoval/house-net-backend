@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import apiRouter from './routes/apiRouter.js';
 
 import errorHandler from './middlewares/errorHandler.js';
-import SPAHandler from './middlewares/spaHandler.js';
+import SPAHandler from './middlewares/SPAHandler.js';
 import customCors from './middlewares/customCors.js';
 
 const app = express();
