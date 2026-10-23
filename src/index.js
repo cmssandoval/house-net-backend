@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -24,6 +25,7 @@ const env =
         : 'development';
 if ( env === 'development') app.use(customCors);
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api', apiRouter);
 
