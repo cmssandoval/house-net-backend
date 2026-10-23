@@ -1,7 +1,7 @@
 import express from 'express';
 import inventoryController from '../controllers/inventoryController.js';
 import validateSchema from "../middlewares/validateSchema.js";
-import createProductSchema from '../schemas/productSchema.js';
+import { createProductSchema } from '../schemas/inventorySchemas.js';
 
 const inventoryRouter = express.Router();
 
