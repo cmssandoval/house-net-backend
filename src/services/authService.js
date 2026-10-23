@@ -6,7 +6,7 @@ const DUMMY_HASH = await argon2.hash('dummy-password');
 
 const signToken = ( user ) => {
   const { id, role } = user;
-  jwt.sign({ sub: id, role }, process.env.JWT_SECRET, {
+  return jwt.sign({ sub: id, role }, process.env.JWT_SECRET, {
     expiresIn: '1h',
   });
 };
@@ -33,7 +33,7 @@ const login = async ({ email, password }) => {
     if ( !user.isActive ) throw new Error('Account is disabled');
 
     const { passwordHash: _, ...cleanUser } = user;
-    return { user: cleanUser, token: signToken(cleanUser) };
+    return { token: signToken(cleanUser) };
 
   } catch ( error ) {
     console.error( 'Authentication process error:', error );
@@ -41,9 +41,15 @@ const login = async ({ email, password }) => {
   }
 };
 
+const auth = async ( token ) => {
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  return decoded;
+}
+
 const authService = {
   register,
   login,
+  auth,
 };
 
 export default authService;
