@@ -1,4 +1,4 @@
-import authService from '../services/AuthService.js';
+import authService from '../services/authService.js';
 
 /** @type {import('express').RequestHandler} */
 const handleRegister = async ( req, res ) => {
