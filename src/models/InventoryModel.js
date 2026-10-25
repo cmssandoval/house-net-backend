@@ -57,9 +57,49 @@ class InventoryModel {
 
   }
 
-  static async deleteItem(id) {
-
+  static async deleteItem( itemId ) {
+    return prisma.inventory.delete({
+      where: { id: itemId }
+    });
   }
+
+
+  static async getCategories() {
+    return prisma.category.findMany();
+  }
+
+  static async createCategory( categoryName ) {
+    return prisma.category.create({
+      data: {
+       name: categoryName,
+    }});
+  }
+
+  static async deleteCategory( categoryName ) {
+    return prisma.category.delete({
+      where: { name: categoryName }
+    });
+  }
+
+  static async getLocations() {
+    return prisma.location.findMany();
+  }
+
+  static async createLocation( locationName ) {
+    return prisma.location.create({
+      data: {
+       name: locationName,
+    }});
+  }
+
+  static async deleteLocation( locationName ) {
+    return prisma.location.delete({
+      where: { name: locationName }
+    });
+  }
+
+
+  
 }
 
 export default InventoryModel;
