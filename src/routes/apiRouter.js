@@ -3,7 +3,6 @@ import inventoryRouter from './inventoryRouter.js';
 import userRouter from './userRouter.js';
 import authRouter from './authRouter.js';
 import authHandler from '../middlewares/authHandler.js';
-// import cameraRouter from './cameraRouter.js';
 
 const apiRouter = express.Router();
 
@@ -23,7 +22,6 @@ apiRouter.use('/inventory', inventoryRouter);
 apiRouter.use('/user', userRouter);
 // apiRouter.use('/tareas', inventarioRouter);
 // apiRouter.use('/calendario', inventarioRouter);
-// apiRouter.use('/camara', camaraRouter); //! DO NOT USE CAMERA ROUTES, NOT IMPLEMENTED
 
 apiRouter.use((req, res, next) => {
     const err = new Error(`Route not found: ${req.method} ${req.originalUrl}`);
