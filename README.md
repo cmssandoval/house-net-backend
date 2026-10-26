@@ -111,7 +111,16 @@ For frontend, I used React + TypeScript, builded with Vite, with react-router-do
     pm2 stop 0
     ```
 - Keep in mind that if you run multiple processes simultaneously, and want them all to start when booting the system, you may need to save the state (`pm2 save`) each time you add a process.
-- To remove a process from automatic startup, you must save the pm2 state while the process is stopped. Otherwise, the process will continue to start automatically
+- To remove a process from automatic startup, you must save the pm2 state while the process is stopped. Otherwise, the process will continue to start automatically.
+- If you use NVM, run this after each node version change:
+    ```
+    pm2 unstartup
+    pm2 startup
+    ```
+- You can also fix a node version when running the first pm2 command:
+    ```
+    pm2 startup systemd -u your_user --hp /home/your_user
+    ```
 
 ## Contact
 If you have any comments, suggestions or questions, check my profile:
