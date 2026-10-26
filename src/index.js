@@ -12,8 +12,8 @@ import customCors from './middlewares/customCors.js';
 
 const app = express();
 
-const PORT = process.env.PORT;
-const HOST = process.env.HOST;
+const PORT = process.env.PORT ?? 5000;
+const HOST = process.env.HOST ?? '0.0.0.0';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

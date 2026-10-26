@@ -36,7 +36,7 @@ For frontend, I used React + TypeScript, builded with Vite, with react-router-do
 
 2. Open a terminal in the downloaded folder directory and run the following commands to install dependencies:
     ```
-    npm run install
+    npm install
     ```
 
 3. Create a .env file following the [**.env.example**](./.env.example) schema and follow the instructions in the code comments.
