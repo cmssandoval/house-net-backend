@@ -1,4 +1,3 @@
-// import { pool } from '../database/nodePg.js';
 import prisma from '../database/prisma.js'
 
 class InventoryModel {
