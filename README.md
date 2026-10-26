@@ -60,7 +60,7 @@ For frontend, I used React + TypeScript, builded with Vite, with react-router-do
 7. Depending on your configuration, go to the server + port route, in example:
     - **http://localhost:5000/**
     - **http://192.168.1.10:8080/**
-    - **http://192.168.1.10:8080/**
+    - **http://192.168.1.20:3000/**
 - **IMPORTANT**: Please configure your network appropriately by establishing a correct and secure setup that complies with cybersecurity standards. Do not use port forwarding on your routers. Implement strict and explicit firewall rules. Keep your systems up to date. This application is designed exclusively for use within a local area network (LAN); if you plan to extend its reach, consider using Tailscale with the appropriate configuration.
 
 8. To stop the server press Ctrl + C.
