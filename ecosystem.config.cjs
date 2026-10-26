@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
     apps: [
         {
@@ -7,7 +9,9 @@ module.exports = {
             exec_mode: 'cluster',
             watch: false,
             max_memory_restart: '2G',
-            env_file: '.env',
-        }
+            env: {
+                NODE_ENV: process.env.NODE_ENV || 'development',
+            },
+        },
     ]
 };
