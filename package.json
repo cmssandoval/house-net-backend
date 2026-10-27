@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node --watch src/index.js",
     "start": "pm2-runtime start ecosystem.config.cjs",
-    "stop": "pm2 stop ecosystem.config.cjs"
+    "stop": "pm2 stop ecosystem.config.cjs",
+    "test": "jest"
   },
   "author": {
     "name": "cmssandoval"
@@ -24,12 +25,16 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "prisma": "6.19.3"
+    "jest": "^30.5.2",
+    "prisma": "6.19.3",
+    "supertest": "^7.3.1"
   },
   "allowScripts": {
     "@prisma/client@6.19.3": true,
     "@prisma/engines@6.19.3": true,
     "prisma@6.19.3": true,
-    "argon2@0.45.1": true
+    "argon2@0.45.1": true,
+    "@parcel/watcher@2.6.0": true,
+    "unrs-resolver@1.12.2": true
   }
 }
