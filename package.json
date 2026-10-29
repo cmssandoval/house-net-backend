@@ -7,7 +7,7 @@
     "dev": "node --watch src/index.js",
     "start": "pm2-runtime start ecosystem.config.cjs",
     "stop": "pm2 stop ecosystem.config.cjs",
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "author": {
     "name": "cmssandoval"
