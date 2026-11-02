@@ -9,7 +9,6 @@ const apiRouter = express.Router();
 apiRouter.get('/', (req, res) => {
     return res.json({
         info: {
-            code: 200,
             status: 'Online',
             message: 'Welcome to House Net API',
         }
