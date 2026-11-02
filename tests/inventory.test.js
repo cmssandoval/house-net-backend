@@ -12,7 +12,7 @@ jest.unstable_mockModule('../src/models/InventoryModel.js', () => ({
 
 const { default: UserModel } = await import('../src/models/UserModel.js');
 const { default: InventoryModel } = await import('../src/models/InventoryModel.js');
-const { default: app } = await import('../src/app.js');
+const { default: app } = await import('./helpers/testApp.js');
 
 describe('API endpoints of /api/inventory', () => {
     beforeEach(() => jest.clearAllMocks());

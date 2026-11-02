@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../src/app.js';
+import app from './helpers/testApp.js';
 
 describe('GET /api', () => {
     it('Returns statusCode 200, online status, and welcome message', async () => {

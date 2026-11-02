@@ -6,7 +6,7 @@ jest.unstable_mockModule('../src/models/UserModel.js', () => ({
 }));
 
 const { default: UserModel } = await import('../src/models/UserModel.js');
-const { default: app } = await import('../src/app.js');
+const { default: app } = await import('./helpers/testApp.js');
 
 describe('API endpoints of /api/auth', () => {   
     beforeEach(() => jest.clearAllMocks());
