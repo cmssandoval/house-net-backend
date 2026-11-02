@@ -18,8 +18,9 @@ const register = async ({ email, fullName, password }) => {
     const user = await UserModel.create({ email, fullName, passwordHash });
     return user;
 
-  } catch (error) {
-    console.error( 'Authentication process error:', error );
+  } catch (err) {
+    const error = new Error('Conflict: Email already exists');
+    error.status = 409;
     throw error;
   }
 };
@@ -29,14 +30,25 @@ const login = async ({ email, password }) => {
     
     const user = await UserModel.findByEmailWithHash( email );
     const isPasswordValid = await argon2.verify( user?.passwordHash ?? DUMMY_HASH, password );
-    if ( !user || !isPasswordValid ) throw new Error('Credentials are invalid');
-    if ( !user.isActive ) throw new Error('Account is disabled');
+    if ( !user || !isPasswordValid ) {
+      const error = new Error('Invalid credentials');
+      error.status = '401';
+      throw error;
+    }
+
+    if ( !user.isActive ) {
+      const error = new Error('User account is disabled');
+      error.status = '403';
+      throw error;
+    }
 
     const { passwordHash: _, ...cleanUser } = user;
     return { token: signToken(cleanUser) };
 
-  } catch ( error ) {
-    console.error( 'Authentication process error:', error );
+  } catch ( err ) {
+    console.log(err);
+    const error = new Error('Authentication process error');
+    error.status = 401;
     throw error;
   }
 };
