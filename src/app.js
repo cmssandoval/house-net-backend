@@ -6,11 +6,13 @@ import apiRouter from './routes/apiRouter.js';
 
 import errorHandler from './middlewares/errorHandler.js';
 import SPAHandler from './middlewares/SPAHandler.js';
+import customHelmet from './middlewares/customHelmet.js';
 import customCors from './middlewares/customCors.js';
 
 const createApp = ({ distPath }) => {
     const app = express();
 
+    app.use(customHelmet);
     app.use(customCors);
     app.use(express.json());
     app.use(cookieParser());
