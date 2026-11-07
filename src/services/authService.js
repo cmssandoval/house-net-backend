@@ -1,13 +1,16 @@
 import UserModel from '../models/UserModel.js';
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
+import { SESSION_SECONDS } from '../config/cookie.js';
 
 const DUMMY_HASH = await argon2.hash('dummy-password');
 
 const signToken = ( user ) => {
   const { id, role } = user;
-  return jwt.sign({ sub: id, role }, process.env.JWT_SECRET, {
-    expiresIn: '1h',
+  return jwt.sign({ role }, process.env.JWT_SECRET, {
+    subject: String( id ),
+    expiresIn: SESSION_SECONDS,
+    algorithm: 'HS256'
   });
 };
 
