@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import './config/env.js';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 
@@ -6,16 +7,14 @@ import apiRouter from './routes/apiRouter.js';
 
 import errorHandler from './middlewares/errorHandler.js';
 import SPAHandler from './middlewares/SPAHandler.js';
+import customHelmet from './middlewares/customHelmet.js';
 import customCors from './middlewares/customCors.js';
 
 const createApp = ({ distPath }) => {
     const app = express();
 
-    const env =
-        process.env.NODE_ENV
-            ? process.env.NODE_ENV
-            : 'development';
-    if ( env === 'development') app.use(customCors);
+    app.use(customHelmet);
+    app.use(customCors);
     app.use(express.json());
     app.use(cookieParser());
     
