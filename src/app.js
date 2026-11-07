@@ -11,11 +11,7 @@ import customCors from './middlewares/customCors.js';
 const createApp = ({ distPath }) => {
     const app = express();
 
-    const env =
-        process.env.NODE_ENV
-            ? process.env.NODE_ENV
-            : 'development';
-    if ( env === 'development') app.use(customCors);
+    app.use(customCors);
     app.use(express.json());
     app.use(cookieParser());
     

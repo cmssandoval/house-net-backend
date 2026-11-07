@@ -1,16 +1,14 @@
-const customCors = ((req, res, next) => {
-    //* Please configure mindfully when using multiple origins
-    //? Delete if you prefer to use the cors package
+import cors from 'cors';
 
-    res.header('Access-Control-Allow-Origin', '');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    if (req.method === 'OPTIONS') {
-        return res.sendStatus(200);
+const customCors = cors({
+  origin: (origin, callback) => {
+    if (process.env.NODE_ENV !== 'production' || !origin) {
+      return callback(null, true);
     }
-
-    next();
+    return callback(new Error('Bloqueado por CORS en Producción'));
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
 });
 
 export default customCors;
