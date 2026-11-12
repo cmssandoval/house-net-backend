@@ -1,9 +1,11 @@
+const isProduction = process.env.NODE_ENV === 'production';
+
 export const SESSION_SECONDS = 60 * 60;
 
 export const cookieOptions = {
   httpOnly: true,
   sameSite: 'lax',
-  secure: false,
+  secure: isProduction,
 };
 
 export const sessionCookieOptions = {
