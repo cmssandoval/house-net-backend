@@ -2,37 +2,37 @@
 
 - House Net is a web application for managing household tasks and information.
 - It is designed to run on a server.
-- This backend functions as an API for the [**House Net frontend application**](https://github.com/cmssandoval/house-net-frontend); however, it is also set up to serve the builded version of the frontend from the same backend environment (via the `dist/` folder), so you will need to include that builded version to use this backend. For this reason, CORS is not configured, as it is not necessary; though you should consider adding it if you plan to deploy the two applications from different origins.
+- This backend functions as an API for the [**House Net frontend application**](https://github.com/cmssandoval/house-net-frontend); however, it is also set up to serve the built version of the frontend from the same backend environment (via the `dist/` folder), so you will need to include that built version to use this backend. For this reason, CORS is not configured, as it is not necessary, though you should consider adding it if you plan to deploy the two applications from different origins.
 
 ## Features
 - Inventory management with CRUD functionalities.
 - User and session functionality for storing personal and private information.
-- Users management with roles to restrict access to specific data and functionalities.
+- User management with roles to restrict access to specific data and functionalities.
 
 ## To Do (Planned features)
 - Articles for storing academic or research information.
 - Posts for sharing internal family information.
-- Public calendar to sharing future events and plans.
-- Private calendar, with posibility to expose to Public Calendar.
+- Public calendar for sharing future events and plans.
+- Private calendar, with the possibility of exposing it to the Public Calendar.
 - Local digital tools to avoid exposing data through third-party sites.
 
 ## Technologies used
-- Node + ExpressJs for server
+- Node + Express.js for the server
 - Prisma + PostgreSQL for database
 - argon2 for hashing
 - jsonwebtoken for encryption
 - zod for validation
 
-For frontend, I used React + TypeScript, builded with Vite, with react-router-dom for the application routes, zod for validation, and bootstrap/react-bootstrap for quick styles.
+For the frontend, I used React + TypeScript, built with Vite, with react-router-dom for the application routes, zod for validation, and bootstrap/react-bootstrap for quick styles.
 
 ## How to use
 ### Prerequisites
 1. Install Node and npm latest versions. This app is constantly being updated and optimized, issues will be resolved as soon as possible.
 2. Install PostgreSQL latest version.
-3. Create the database **housenet**, or whatever name you like, just put the same in the DATABASE_URL environment variable at your .env file.
+3. Create the database **housenet**, or whatever name you like; just put the same name in the DATABASE_URL environment variable in your .env file.
 
 ### Requirements
-1. Download or clone this repostory. Consider that you should do the same with the frontend app by now, in the future I will probably include the latest build in this same backend repository, I apologize.
+1. Download or clone this repository. Consider that you should do the same with the frontend app for now; in the future, I will probably include the latest build in this same backend repository. I apologize.
 
 2. Open a terminal in the downloaded folder directory and run the following commands to install dependencies:
     ```
@@ -41,7 +41,7 @@ For frontend, I used React + TypeScript, builded with Vite, with react-router-do
 
 3. Create a .env file following the [**.env.example**](./.env.example) schema and follow the instructions in the code comments.
 
-4. To create the tables on the database from the prisma schema, run:
+4. To create the tables in the database from the Prisma schema, run:
     ```
     npx prisma migrate deploy
     ```
@@ -50,20 +50,20 @@ For frontend, I used React + TypeScript, builded with Vite, with react-router-do
     npx prisma db push
     ```
 
-5. Make sure you have the dist folder with the frontend app builded inside.
+5. Make sure you have the dist folder with the frontend app built inside.
 
-6. To manually start the server run:
+6. To manually start the server, run:
     ```
     npm run start
     ```
 
-7. Depending on your configuration, go to the server + port route, in example:
+7. Depending on your configuration, go to the server + port URL, for example:
     - **http://localhost:5000/**
     - **http://192.168.1.10:8080/**
     - **http://192.168.1.20:3000/**
 - **IMPORTANT**: Please configure your network appropriately by establishing a correct and secure setup that complies with cybersecurity standards. Do not use port forwarding on your routers. Implement strict and explicit firewall rules. Keep your systems up to date. This application is designed exclusively for use within a local area network (LAN); if you plan to extend its reach, consider using Tailscale with the appropriate configuration.
 
-8. To stop the server press Ctrl + C.
+8. To stop the server, press Ctrl + C.
 
 ## Notes
 - If you want to run this app automatically when turning on your server, you must configure pm2:
@@ -78,11 +78,11 @@ For frontend, I used React + TypeScript, builded with Vite, with react-router-do
     pm2 --version
     ```
 
-3. To generate the script for automatic initialization in your operative system, run:
+3. To generate the script for automatic initialization in your operating system, run:
     ```
     pm2 startup
     ```
-- This command will return you a custom command, you should copy it and paste it to enable the service. Remember to run it as administrator. In linux, it looks something like this:
+- This command will return a custom command; you should copy and paste it to enable the service. Remember to run it as administrator. In Linux, it looks something like this:
     ```
     sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u your_user --hp /home/your_user
     ```
@@ -92,7 +92,7 @@ For frontend, I used React + TypeScript, builded with Vite, with react-router-do
     npm run start
     ```
 
-5. Save the running process list of pm2 running:
+5. Save the list of running PM2 processes:
     ```
     pm2 save
     ```
@@ -102,7 +102,7 @@ For frontend, I used React + TypeScript, builded with Vite, with react-router-do
     pm2 status
     ```
 
-7. To stop it by its pm2 process name or id, in a terminal, run:
+7. To stop it by its PM2 process name or ID, run this in a terminal:
     ```
     pm2 stop backend-house-net
     ```
