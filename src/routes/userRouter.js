@@ -1,4 +1,5 @@
 import express from 'express';
+import userController from "../controllers/userController.js";
 
 const userRouter = express.Router();
 
@@ -6,8 +7,11 @@ const userRouter = express.Router();
 // userRouter.put('/me', userController.updateOwnUser);
 
 // Validate admin role to use this routes
-// userRouter.get('/', userController.readUsers);
-// userRouter.get('/:id', userController.readSingleUser);
-// userRouter.get('/:id', userController.deleteSingleUser);
+userRouter.get('/', userController.readUsers);
+userRouter.post('/', userController.createUser);
+
+userRouter.post('/:id', userController.createUser);
+userRouter.put('/:id', userController.replaceUser);
+userRouter.delete('/:id', userController.deleteUser);
 
 export default userRouter;

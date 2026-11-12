@@ -18,7 +18,7 @@ apiRouter.use(identify);
 apiRouter.use('/auth', authRouter);
 
 apiRouter.use('/inventory', requireAuth,inventoryRouter);
-apiRouter.use('/user', requireAuth, userRouter);
+apiRouter.use('/users', requireAuth, userRouter);
 // apiRouter.use('/tareas', inventarioRouter);
 // apiRouter.use('/calendario', inventarioRouter);
 
