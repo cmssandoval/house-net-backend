@@ -1,7 +1,7 @@
 import helmet from 'helmet';
 
 const customHelmet = helmet({
-  hsts: false,
+  hsts: { maxAge: 86400 },
   crossOriginResourcePolicy: { policy: "cross-origin" },
   crossOriginEmbedderPolicy: false,
   contentSecurityPolicy: {
